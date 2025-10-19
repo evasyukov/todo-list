@@ -4,3 +4,40 @@
   padding: 2rem;
   text-align: center;
 }
+
+.todo-list {
+  text-align: left;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 800px;
+
+  padding: 15px;
+  margin-bottom: 20px;
+
+  border: 1px solid #ffffffde;
+}
+
+.todo__title {
+  max-width: 500px;
+  word-break: break-word;
+}
+
+.todo_completed {
+  width: 150px;
+  padding: 10px;
+  text-align: center;
+}
+
+.true {
+  background-color: rgba(2, 255, 15, 0.577);
+
+}
+
+.false {
+  background-color: rgba(255, 2, 2, 0.617);
+}
