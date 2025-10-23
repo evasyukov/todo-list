@@ -13,6 +13,7 @@ function App() {
   const [refresh, setRefresh] = useState(false) // флаг для отслеживания изменений в списке
   const [editingId, setEditingId] = useState(null) // отслеживаем процесс редактирования
   const [editingText, setEditingText] = useState("") // обновленный текст дела
+  const [searchQuery, setSearchQuery] = useState("") // поиск дела
 
   const refreshTodos = () => setRefresh(!refresh)
 
@@ -61,8 +62,14 @@ function App() {
     requestUpdateTodos(todo.id, { completed: !todo.completed })
   }
 
+  // поиск дела по запросу
+  const filteredTodos = todos.filter((todo) =>
+    todo.title.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+
   return (
     <>
+      {/* форма добавления дела */}
       <form className="add-todo" onSubmit={submitTodos}>
         <textarea
           className="add-todo__textarea"
@@ -79,8 +86,18 @@ function App() {
         </button>
       </form>
 
+      {/* поиск дела */}
+      <input
+        className="todo-search"
+        type="text"
+        placeholder="Поиск дела"
+        value={searchQuery}
+        onChange={(event) => setSearchQuery(event.target.value)}
+      />
+
+      {/* отрисовка списка дел */}
       <div className="todo-list">
-        {todos.map((todo) => (
+        {filteredTodos.map((todo) => (
           <div className="todo" key={todo.id}>
             <div className="todo__title">
               {editingId === todo.id ? (

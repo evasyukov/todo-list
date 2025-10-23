@@ -7,7 +7,7 @@
 
 /* форма с добавлением дела */
 .add-todo {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 
   display: flex;
   flex-direction: column;
@@ -34,6 +34,17 @@
   height: 30px;
 }
 
+/* поиск дела */
+.todo-search {
+  width: 300px;
+  height: 20px;
+
+  margin-bottom: 30px;
+  padding: 7px;
+
+  border: 1px solid #858585;
+  border-radius: 5px;
+}
 
 /* список дел */
 .todo-list {
@@ -51,6 +62,8 @@
   margin-bottom: 20px;
 
   border: 1px solid #ffffffde;
+  border-radius: 7px;
+
 }
 
 .todo__title {
@@ -82,14 +95,15 @@
   background-color: #02ff0f93;
 }
 
-.true:hover{
+.true:hover {
   background-color: #02ff0fc0;
-  
+
 }
 
 .false {
   background-color: #ff02029d;
 }
+
 .false:hover {
   background-color: #ff02026b;
 }
