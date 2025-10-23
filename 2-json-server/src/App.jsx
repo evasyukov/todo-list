@@ -1,6 +1,11 @@
 import { useState } from "react"
 
-import { useRequestGetTodos, useRequestAddTodos } from "./hooks"
+import {
+  useRequestGetTodos,
+  useRequestAddTodos,
+  useRequestRemoveTodos,
+  // useRequestUpdateTodos
+} from "./hooks"
 import "./App.css"
 
 function App() {
@@ -9,13 +14,22 @@ function App() {
 
   const refreshTodos = () => setRefresh(!refresh) // для повторного рендера списка
 
-  const todos = useRequestGetTodos(refresh)
+  const todos = useRequestGetTodos(refresh) // получаем список
+
+  const { isCreating, requestAddTodos } = useRequestAddTodos(
+    todoText,
+    refreshTodos
+  ) // добавляем дело в список
+
+  const { requestRemoveTodos } = useRequestRemoveTodos(refreshTodos) // вызываем хук для удаления
+
+  function deleteTodo(id) {
+    requestRemoveTodos(id) // удаляем дело из списка
+  }
 
   function handleChange(event) {
     setTodoText(event.target.value)
   }
-
-  const { isCreating, requestAddTodos } = useRequestAddTodos(todoText, refreshTodos)
 
   function submitTodos(event) {
     event.preventDefault()
@@ -45,11 +59,18 @@ function App() {
         {todos.map((todo) => (
           <div className="todo" key={todo.id}>
             <div className="todo__title">{todo.title}</div>
-            {todo.completed ? (
-              <div className="todo_completed true">выполнено</div>
-            ) : (
-              <div className="todo_completed false">не выполнено</div>
-            )}
+
+            <div className="todo__management">
+              {todo.completed ? (
+                <div className="todo_completed true">выполнено</div>
+              ) : (
+                <div className="todo_completed false">не выполнено</div>
+              )}
+              <div className="todo__buttons">
+                <button onClick={() => deleteTodo(todo.id)}>Удалить</button>
+                <button>Редактировать</button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
