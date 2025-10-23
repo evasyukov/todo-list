@@ -1,21 +1,39 @@
-// import { useState, useEffect } from "react"
+import { useState } from "react"
 
-import { useRequestGetTodos } from "./hooks"
+import { useRequestGetTodos, useRequestAddTodos } from "./hooks"
 import "./App.css"
 
 function App() {
-  const todos = useRequestGetTodos()
+  const [todoText, setTodoText] = useState("")
+  const [refresh, setRefresh] = useState(false)
 
+  const refreshTodos = () => setRefresh(!refresh) // для повторного рендера списка
+
+  const todos = useRequestGetTodos(refresh)
+
+  function handleChange(event) {
+    setTodoText(event.target.value)
+  }
+
+  const { isCreating, requestAddTodos } = useRequestAddTodos(todoText, refreshTodos)
+
+  function submitTodos(event) {
+    event.preventDefault()
+    requestAddTodos()
+    setTodoText("")
+  }
 
   return (
     <>
-      <form className="add-todo">
+      <form className="add-todo" onSubmit={submitTodos}>
         <textarea
           className="add-todo__textarea"
-          autocomplete="off"
+          autoComplete="off"
           placeholder="Что поделаем?"
           rows="2"
           required
+          value={todoText}
+          onInput={handleChange}
         />
 
         <button className="add-todo_button" type="submit">
@@ -24,7 +42,7 @@ function App() {
       </form>
 
       <div className="todo-list">
-        {Object.values(todos.todos || {}).map((todo) => (
+        {todos.map((todo) => (
           <div className="todo" key={todo.id}>
             <div className="todo__title">{todo.title}</div>
             {todo.completed ? (

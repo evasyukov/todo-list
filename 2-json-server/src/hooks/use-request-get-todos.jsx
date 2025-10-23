@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-export function useRequestGetTodos() {
+export function useRequestGetTodos(refresh) {
   const [todos, setTodos] = useState([])
 
   useEffect(() => {
@@ -10,9 +10,7 @@ export function useRequestGetTodos() {
         setTodos(todoList)
       })
       .catch(() => console.log("Ошибка запроса"))
-  }, [])
+  }, [refresh])
 
-  return {
-    todos,
-  }
+  return todos
 }

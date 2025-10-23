@@ -1,16 +1,14 @@
 {
-  "todos": {
-    "1": {
-      "title": "Купить продукты",
+  "todos": [
+    {
+      "id": "1",
+      "title": "Попить пиво",
       "completed": false
     },
-    "2": {
-      "title": "Сделать домашнее задание",
-      "completed": true
-    },
-    "3": {
-      "title": "Позвонить маме",
-      "completed": false
+    {
+      "title": "ewrf",
+      "completed": false,
+      "id": "kIA-OuK"
     }
-  }
+  ]
 }
