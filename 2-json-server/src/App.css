@@ -5,6 +5,7 @@
   text-align: center;
 }
 
+/* форма с добавлением дела */
 .add-todo {
   margin-bottom: 50px;
 
@@ -33,6 +34,8 @@
   height: 30px;
 }
 
+
+/* список дел */
 .todo-list {
   text-align: left;
 }
@@ -64,19 +67,34 @@
   width: 100px;
   padding: 0 10px;
 
+  border-radius: 5px;
+
   text-align: center;
   line-height: 60px;
   font-size: 14px;
+
+  cursor: pointer;
+  user-select: none;
 }
 
+/* статус дела */
 .true {
-  background-color: rgba(2, 255, 15, 0.577);
+  background-color: #02ff0f93;
+}
+
+.true:hover{
+  background-color: #02ff0fc0;
+  
 }
 
 .false {
-  background-color: rgba(255, 2, 2, 0.617);
+  background-color: #ff02029d;
+}
+.false:hover {
+  background-color: #ff02026b;
 }
 
+/* кнопки редактрования и удаления */
 .todo__buttons {
   display: flex;
   flex-direction: column;

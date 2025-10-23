@@ -9,7 +9,7 @@ export function useRequestGetTodos(refresh) {
       .then((todoList) => {
         setTodos(todoList)
       })
-      .catch(() => console.log("Ошибка запроса"))
+      .catch(() => console.error("Ошибка запроса"))
   }, [refresh])
 
   return todos
