@@ -14,6 +14,7 @@ function App() {
   const [editingId, setEditingId] = useState(null) // отслеживаем процесс редактирования
   const [editingText, setEditingText] = useState("") // обновленный текст дела
   const [searchQuery, setSearchQuery] = useState("") // поиск дела
+  const [isSorting, setIsSorting] = useState(false) // флаг для сортировки
 
   const refreshTodos = () => setRefresh(!refresh)
 
@@ -62,10 +63,14 @@ function App() {
     requestUpdateTodos(todo.id, { completed: !todo.completed })
   }
 
-  // поиск дела по запросу
-  const filteredTodos = todos.filter((todo) =>
-    todo.title.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  // поиск дела по запросу и сортировка
+  const filteredTodos = todos
+    .filter((todo) =>
+      todo.title.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) =>
+      isSorting ? (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1) : 0
+    )
 
   return (
     <>
@@ -86,14 +91,26 @@ function App() {
         </button>
       </form>
 
-      {/* поиск дела */}
-      <input
-        className="todo-search"
-        type="text"
-        placeholder="Поиск дела"
-        value={searchQuery}
-        onChange={(event) => setSearchQuery(event.target.value)}
-      />
+      {/* поиск дела с сортировка */}
+      <div className="sorting">
+        <input
+          className="sorting__search"
+          type="text"
+          placeholder="Поиск дела"
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+        />
+
+        <div className="sorting__abc">
+          <label for="sorting">Сортировка по алфавиту</label>
+          <input
+            type="checkbox"
+            id="sorting"
+            checked={isSorting}
+            onChange={(event) => setIsSorting(event.target.checked)}
+          />
+        </div>
+      </div>
 
       {/* отрисовка списка дел */}
       <div className="todo-list">
