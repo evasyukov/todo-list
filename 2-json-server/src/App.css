@@ -41,6 +41,8 @@
 
   display: flex;
   justify-content: space-around;
+
+
 }
 
 .sorting__search {
@@ -55,6 +57,11 @@
 .sorting__abc {
   display: flex;
   align-items: center;
+
+  & :hover {
+    color: #fff;
+    cursor: pointer;
+  }
 }
 
 /* список дел */
