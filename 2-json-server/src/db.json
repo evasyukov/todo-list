@@ -1,39 +1,5 @@
 {
   "todos": [
-    {
-      "id": "1",
-      "title": "Не пить пиво",
-      "completed": false
-    },
-    {
-      "title": "Пить пиво",
-      "completed": true,
-      "id": "kIA-OuK"
-    },
-    {
-      "title": "Мышка и кружка",
-      "completed": false,
-      "id": "zT-hQgs"
-    },
-    {
-      "title": "Автомобиль помыть",
-      "completed": true,
-      "id": "caFXyym"
-    },
-    {
-      "title": "Чешки купить",
-      "completed": true,
-      "id": "S3uKOsi"
-    },
-    {
-      "title": "Бегать",
-      "completed": false,
-      "id": "aCq6Sty"
-    },
-    {
-      "title": "бегать",
-      "completed": false,
-      "id": "JY0pL5R"
-    }
+
   ]
 }
